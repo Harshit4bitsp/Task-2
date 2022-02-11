@@ -1,0 +1,149 @@
+cnt = 0
+
+
+class Course:
+    notes = ""
+    gglurl = ""
+
+    def __init__(self, in_name, in_unit, in_number):
+        self.course_name = in_name
+        self.course_units = in_unit
+        self.course_number = in_number
+
+    def fullcourse_print(self):
+        print("Course is:", self.course_name)
+        print("Number of Units are:", self.course_units)
+        print("Note:", self.notes)
+        print("Gmeeturl:", self.gglurl)
+
+    def line_print(self):
+        print("\t", self.course_name, " ", self.course_units)
+
+    def notes_print(self):
+        print("\tNote:", self.notes)
+
+    def add_notes(self, inputnotes):  # add and update of notes , comma seperated notes
+        self.notes += inputnotes
+        self.notes += " , "
+
+    def del_notes(self):
+        self.notes = ""
+
+    def gglurl_print(self):
+        print("\tGmeetURL:", self.gglurl)
+
+    def add_gglurl(self, inputurl):  # add and update of url , comma seperated urls
+        self.gglurl += inputurl
+        self.gglurl += " , "
+
+    def del_gglurl(self):
+        self.gglurl = ""
+
+
+crslst = []
+crslst.append(Course("Maths  ", 11, 1))
+crslst.append(Course("English", 21, 2))
+crslst.append(Course("Python ", 13, 3))
+crslst.append(Course("DSA    ", 41, 4))
+crslst.append(Course("OOP    ", 15, 5))
+setlst = set()
+
+
+def selected_courses():
+    print("\n")
+    for i in setlst:
+        crslst[i].line_print()
+    display_home()
+
+
+def display_home():
+    print("\n")
+    print("\tHello User:")
+    print("\t1> Select a course to add: Maths(1) , English(2) , Python(3) , DSA(4) , OOP(5)")
+    print("\t2> Delete/remove a course: Maths(1) , English(2) , Python(3) , DSA(4) , OOP(5)")
+    print("\t3> Update/add notes to a course.")
+    print("\t4> Delete/remove notes of a course.")
+    print("\t5> Update/add Gmeet link to a course.")
+    print("\t6> Delete/remove Gmeet link from a course.")
+    print("\t7> Print all my courses.")
+    print("\t8> Print notes of a course")
+    print("\t9> Print Gmeet links of a course")
+    print("\t10> Exit the program.")
+    x = int(input("\n\n\tPlease select your choice:"))
+    if x < 0 or x > 10:
+        print("\tYou have inserted the wrong value please try again.")
+        display_home()
+    elif x == 1:
+        t1 = int(input("\tPlease enter the number of course:"))
+        if t1 > 0 and t1 <= 5:
+            setlst.add(t1 - 1)
+            display_home()
+        else:
+            print("\tYou have inserted the wrong value please try again.")
+            display_home()
+    elif x == 2:
+        t1 = int(input("\tPlease enter the number of course:"))
+        if t1 > 0 and t1 <= 5:
+            setlst.remove(t1-1)
+            display_home()
+        else:
+            print("\tYou have inserted the wrong value please try again.")
+            display_home()
+    elif x == 3:
+        t1 = int(input("\tPlease enter the number of course:"))
+        if t1 > 0 and t1 <= 5:
+            t2 = (input("\tPlease enter the note:"))
+            crslst[t1 - 1].add_notes(t2)
+            display_home()
+        else:
+            print("\tYou have inserted the wrong value please try again.")
+            display_home()
+    elif x == 4:
+        t1 = int(input("\tPlease enter the number of course:"))
+        if t1 >= 1 and t1 <= 5:
+            crslst[t1 - 1].del_notes()
+            display_home()
+        else:
+            print("\tYou have inserted the wrong value please try again.")
+            display_home()
+    elif x == 5:
+        t1 = int(input("\tPlease enter the number of course:"))
+        if t1 >= 1 and t1 <= 5:
+            t2 = (input("\tPlease enter the Gmeet URL:"))
+            crslst[t1 - 1].add_gglurl(t2)
+            display_home()
+        else:
+            print("\tYou have inserted the wrong value please try again.")
+            display_home()
+    elif x == 6:
+        t1 = int(input("\tPlease enter the number of course:"))
+        if t1 >= 1 and t1 <= 5:
+            crslst[t1 - 1].del_gglurl()
+            display_home()
+        else:
+            print("\tYou have inserted the wrong value please try again.")
+            display_home()
+    elif x == 7:
+        # print("Size of list:", len(lst))
+        selected_courses()
+    elif x == 8:
+        t1 = int(input("\tPlease enter the number of course:"))
+        if t1 >= 1 and t1 <= 5:
+            crslst[t1 - 1].notes_print()
+            display_home()
+        else:
+            print("\tYou have inserted the wrong value please try again.")
+            display_home()
+    elif x == 9:
+        t1 = int(input("\tPlease enter the number of course:"))
+        if t1 >= 1 and t1 <= 5:
+            crslst[t1 - 1].gglurl_print()
+            display_home()
+        else:
+            print("\tYou have inserted the wrong value please try again.")
+            display_home()
+    elif x == 10:
+        exit()
+
+
+display_home()
